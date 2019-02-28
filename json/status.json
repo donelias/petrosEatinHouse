@@ -1,0 +1,40 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "slug",
+            "type": "string"
+        }
+    ],
+
+    "relationships": [
+        {
+            "name": "products",
+            "type": "hasMany",
+            "class": "App\\Product"
+        },
+        {
+            "name": "orders",
+            "type": "hasMany",
+            "class": "App\\Order"
+        },
+        {
+            "name": "users",
+            "type": "hasMany",
+            "class": "App\\User"
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required|max:255"
+        },
+        {
+            "field": "slug",
+            "rules": "required|max:255"
+        }
+    ]
+}

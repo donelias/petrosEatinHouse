@@ -1,0 +1,64 @@
+{
+    "fields": [
+        {
+            "name": "order_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "product_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "quantity",
+            "type": "integer"
+        },
+        {
+            "name": "price",
+            "type": "decimal"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "order_id",
+            "references": "id",
+            "on": "orders",
+            "onDelete": "cascade"
+        },
+        {
+            "column": "product_id",
+            "references": "id",
+            "on": "products",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "product",
+            "type": "belongsTo",
+            "class": "App\\Product"
+        },
+        {
+            "name": "order",
+            "type": "belongsTo",
+            "class": "App\\Order"
+        }
+    ],
+    "validations": [
+        {
+            "field": "order_id",
+            "rules": "required|integer"
+        },
+        {
+            "field": "product_id",
+            "rules": "required|integer"
+        },
+        {
+            "field": "quantity",
+            "rules": "required|decimal"
+        },
+        {
+            "field": "price",
+            "rules": "required"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "fields": [
+        {
+            "name": "no_invoice",
+            "type": "string"
+        },
+        {
+            "name": "order_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "status_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "order_id",
+            "references": "id",
+            "on": "orders",
+            "onDelete": "cascade"
+        },
+        {
+            "column": "status_id",
+            "references": "id",
+            "on": "statuses",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "order",
+            "type": "belongsTo",
+            "class": "App\\Order"
+        }
+    ],
+    "validations": [
+        {
+            "field": "no_invoice",
+            "rules": "required"
+        },
+        {
+            "field": "order_id",
+            "rules": "required|integer"
+        },
+        {
+            "field": "status_id",
+            "rules": "required|integer"
+        }
+    ]
+}

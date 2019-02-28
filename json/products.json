@@ -1,0 +1,97 @@
+{
+    "fields": [
+        {
+            "name": "code",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "slug",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "price",
+            "type": "decimal"
+        },
+        {
+            "name": "image",
+            "type": "string"
+        },
+        {
+            "name": "category_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "status_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "category_id",
+            "references": "id",
+            "on": "categories",
+            "onDelete": "cascade"
+        },
+        {
+            "column": "status_id",
+            "references": "id",
+            "on": "statuses",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "category",
+            "type": "belongsTo",
+            "class": "App\\Category"
+        },
+        {
+            "name": "status",
+            "type": "belongsTo",
+            "class": "App\\Status"
+        },
+        {
+            "name": "orderItem",
+            "type": "hasMany",
+            "class": "App\\OrderItem"
+        }
+    ],
+    "validations": [
+        {
+            "field": "code",
+            "rules": "required|unique:products,code"
+        },
+        {
+            "field": "name",
+            "rules": "required|max:255"
+        },
+        {
+            "field": "slug",
+            "rules": "required|max:255|unique:products,slug"
+        },
+        {
+            "field": "content",
+            "rules": "required"
+        },
+        {
+            "field": "price",
+            "rules": "required"
+        },
+        {
+            "field": "category_id",
+            "rules": "required|integer"
+        },
+        {
+            "field": "status_id",
+            "rules": "required|integer"
+        }
+    ]
+}

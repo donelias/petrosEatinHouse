@@ -1,0 +1,82 @@
+{
+    "fields": [
+        {
+            "name": "username",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "password",
+            "type": "string"
+        },
+        {
+            "name": "role_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "status_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "role_id",
+            "references": "id",
+            "on": "roles",
+            "onDelete": "cascade"
+        },
+        {
+            "column": "status_id",
+            "references": "id",
+            "on": "statuses",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "person",
+            "type": "hasMany",
+            "class": "App\\Person"
+        },
+        {
+            "name": "status",
+            "type": "belongsTo",
+            "class": "App\\Status"
+        },
+        {
+            "name": "role",
+            "type": "belongsTo",
+            "class": "App\\Role"
+        },
+        {
+            "name": "orders",
+            "type": "hasMany",
+            "class": "App\\Order"
+        }
+    ],
+    "validations": [
+        {
+            "field": "username",
+            "rules": "required|min:6|unique:users,username"
+        },
+        {
+            "field": "email",
+            "rules": "required|max:255|unique:users,email"
+        },
+        {
+            "field": "password",
+            "rules": "required|min:6"
+        },
+        {
+            "field": "category_id",
+            "rules": "required|integer"
+        },
+        {
+            "field": "status_id",
+            "rules": "required|integer"
+        }
+    ]
+}

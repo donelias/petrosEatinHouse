@@ -1,0 +1,77 @@
+{
+    "fields": [
+        {
+            "name": "identity",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "last_name",
+            "type": "string"
+        },
+        {
+            "name": "address",
+            "type": "text"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "cellphone",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "user_id",
+            "references": "id",
+            "on": "users",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\User"
+        }
+    ],
+    "validations": [
+        {
+            "field": "identity",
+            "rules": "required|unique:people,identity"
+        },
+        {
+            "field": "name",
+            "rules": "required|max:255"
+        },
+        {
+            "field": "last_name",
+            "rules": "required|max:255"
+        },
+        {
+            "field": "address",
+            "rules": "required"
+        },
+        {
+            "field": "phone",
+            "rules": "required"
+        },
+        {
+            "field": "cellphone",
+            "rules": "required"
+        },
+        {
+            "field": "user_id",
+            "rules": "required|integer"
+        }
+    ]
+}
